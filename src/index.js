@@ -2,31 +2,26 @@ import itemMenu from './templates/menu.hbs';
 import menu from './menu.json';
 import './styles.css';
 
-
+const refs = {
+    menu: document.querySelector('.js-menu'),
+    checkBox: document.querySelector(".theme-switch__toggle"),
+    body: document.querySelector('body')
+}
 
 const Menumarkup = itemMenu(menu);
-// console.log(Menumarkup);
+refs.menu.insertAdjacentHTML('afterbegin', Menumarkup);
 
-const menuRef = document.querySelector('.js-menu');
-
-// console.log(menuRef);
-
-menuRef.insertAdjacentHTML('afterbegin', Menumarkup);
-
-const checkBoxRef = document.querySelector(".theme-switch__toggle");
-const bodyRef = document.querySelector('body');
 
 const Theme = {
   LIGHT: 'light-theme',
    DARK: 'dark-theme',
  };
 
-
-checkBoxRef.addEventListener('change', switchToggle);
+refs.checkBox.addEventListener('change', switchToggle);
 
 function switchToggle(e) {
-    bodyRef.classList.toggle(Theme.LIGHT);
-    bodyRef.classList.toggle(Theme.DARK);
+    refs.body.classList.toggle(Theme.LIGHT);
+    refs.body.classList.toggle(Theme.DARK);
 
     if (e.target.checked) {
         localStorage.setItem('theme', Theme.DARK);
@@ -37,9 +32,9 @@ function switchToggle(e) {
 
 function checkTheme() {
     if (localStorage.theme === 'dark-theme') {
-        bodyRef.classList.add(Theme.DARK);
+        refs.body.classList.add(Theme.DARK);
     } else  {
-        bodyRef.classList.add(Theme.LIGHT);
+        refs.body.classList.add(Theme.LIGHT);
     }
 };
 
