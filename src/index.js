@@ -33,6 +33,7 @@ function switchToggle(e) {
 function checkTheme() {
     if (localStorage.theme === 'dark-theme') {
         refs.body.classList.add(Theme.DARK);
+        refs.checkBox.checked = true;
     } else  {
         refs.body.classList.add(Theme.LIGHT);
     }
